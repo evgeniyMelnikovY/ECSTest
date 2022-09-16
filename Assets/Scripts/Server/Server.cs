@@ -27,11 +27,13 @@ namespace Remote
             Run();
         }
 
-        public void SetupWorld(List<List<object>> data)
+        public Dictionary<int, List<object>> SetupWorld(List<List<object>> data)
         {
             _world?.Dispose();
 
             _world = new World(data);
+
+            return _world.GetRawData();
         }
 
         private async void Run()
@@ -60,6 +62,11 @@ namespace Remote
             {
                 Console.WriteLine(e);
             }
+        }
+
+        public void UserAction(Dictionary<int, List<object>> data)
+        {
+            _world?.AppendRawData(data);
         }
 
         private void Update(float deltaTime)

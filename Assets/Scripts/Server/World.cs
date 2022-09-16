@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace Remote
 {
@@ -20,6 +21,7 @@ namespace Remote
             _world.GetPool<Transform>();
             _world.GetPool<Destination>();
             _world.GetPool<Actor>();
+            _world.GetPool<Movement>();
 
             foreach (var entity in data)
             {
@@ -61,6 +63,22 @@ namespace Remote
             }
 
             return result;
+        }
+
+        public void AppendRawData(Dictionary<int, List<object>> data)
+        {
+            foreach (var pair in data)
+            {
+                foreach (var component in pair.Value)
+                {
+                    var p = _world.GetPoolByType(component.GetType());
+                    
+                    if (!p.Has(pair.Key))
+                        p.AddRaw(pair.Key, component);
+                    else
+                        p.SetRaw(pair.Key, component);
+                }
+            }
         }
 
         public void Dispose()

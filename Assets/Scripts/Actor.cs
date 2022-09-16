@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class Actor : MonoBehaviour
 {
+    [SerializeField] private float _speed;
+    
     public List<object> GetRawData()
     {
         return new List<object>
         {
             new Remote.Transform{Position = transform.position},
+            new Remote.Movement {Speed = _speed},
             new Remote.Actor()
         };
     }

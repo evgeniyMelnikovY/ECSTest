@@ -17,6 +17,11 @@ namespace Remote
       public Vector3 Position;
    }
 
+   public struct Movement
+   {
+      public float Speed;
+   }
+
    public struct Destination
    {
       public Vector3 Position;

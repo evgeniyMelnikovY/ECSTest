@@ -17,7 +17,7 @@ public class Button : View
 
     protected override void CreateRawData(ref List<object> result)
     {
-        result.Add(new Remote.Button { Radius = 0.5f });
+        result.Add(new Remote.Button { Radius = 1f });
         result.Add(new Remote.Link { Id = _id });
     }
 

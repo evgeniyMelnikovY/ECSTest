@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace Remote
 {
@@ -16,12 +15,19 @@ namespace Remote
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
             _systems.Add(new MovingSystem())
+                .Add(new ButtonPressSystem())
+                .Add(new OpenSystem())
                 .Init();
 
             _world.GetPool<Transform>();
             _world.GetPool<Destination>();
             _world.GetPool<Actor>();
             _world.GetPool<Movement>();
+            _world.GetPool<Button>();
+            _world.GetPool<Link>();
+            _world.GetPool<Door>();
+            _world.GetPool<OpenTrigger>();
+            _world.GetPool<Wall>();
 
             foreach (var entity in data)
             {

@@ -19,6 +19,7 @@ namespace Remote
                 .Add(new OpenSystem())
                 .Init();
 
+            //костыль так как GetPoolByType не создает новый пул
             _world.GetPool<Transform>();
             _world.GetPool<Destination>();
             _world.GetPool<Actor>();
@@ -28,6 +29,7 @@ namespace Remote
             _world.GetPool<Door>();
             _world.GetPool<OpenTrigger>();
             _world.GetPool<Wall>();
+            //
 
             foreach (var entity in data)
             {
